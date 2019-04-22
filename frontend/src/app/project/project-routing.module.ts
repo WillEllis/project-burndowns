@@ -6,7 +6,6 @@ import { PermissionGuard } from 'src/app/auth/permission.guard';
 import { Permissions } from 'src/security/permissions';
 import { ProjectListComponent } from 'src/app/project/list/project-list.component';
 import { ProjectViewComponent } from 'src/app/project/view/project-view.component';
-import { ProjectImporterComponent } from 'src/app/project/importer/project-importer.component';
 import { ProjectFormComponent } from 'src/app/project/form/project-form.component';
 
 const routes: Routes = [
@@ -28,14 +27,6 @@ const routes: Routes = [
         canActivate: [AuthGuard, PermissionGuard],
         data: {
           permission: Permissions.values.projectCreate,
-        },
-      },
-      {
-        path: 'import',
-        component: ProjectImporterComponent,
-        canActivate: [AuthGuard, PermissionGuard],
-        data: {
-          permission: Permissions.values.projectImport,
         },
       },
       {
@@ -68,6 +59,5 @@ export class ProjectRoutingModule {}
 export const routedComponents = [
   ProjectListComponent,
   ProjectFormComponent,
-  ProjectViewComponent,
-  ProjectImporterComponent,
+  ProjectViewComponent
 ];

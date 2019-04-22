@@ -56,9 +56,7 @@ export class ProjectListFilterComponent implements OnInit {
   private buildSchema() {
     this.schema = new FilterSchema(
       [
-        this.fields.id,
-
-        this.fields.createdAtRange,
+        this.fields.name
       ],
       this.formBuilder,
     );

@@ -1,56 +1,62 @@
-<form
-  class="filter"
-  (ngSubmit)="doFilter()"
-  [formGroup]="form"
-  #ngForm="ngForm"
-  *ngIf="form"
->
-  <div class="row">
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <input
-          matInput
-          [formControlName]="fields.name.name"
-          [placeholder]="fields.name.label"
-        />
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.name.name)"
-            [label]="fields.name.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="filter-buttons">
-    <button
-      mat-flat-button
-      [disabled]="loading"
-      color="primary"
-      type="submit"
-    >
-      <mat-icon
-        inline
-        fontSet="fas"
-        fontIcon="fa-search"
-      ></mat-icon
-      >&#160;
+<mat-expansion-panel class="filter">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
       <app-i18n key="common.search"></app-i18n>
-    </button>
-    <button
-      mat-flat-button
-      [disabled]="loading"
-      (click)="doReset()"
-      type="button"
-    >
-      <mat-icon
-        inline
-        fontSet="fas"
-        fontIcon="fa-undo"
-      ></mat-icon
-      >&#160;
-      <app-i18n key="common.reset"></app-i18n>
-    </button>
-  </div>
-</form>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form
+    (ngSubmit)="doFilter()"
+    [formGroup]="form"
+    #ngForm="ngForm"
+    *ngIf="form"
+  >
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <input
+            matInput
+            [formControlName]="fields.name.name"
+            [placeholder]="fields.name.label"
+          />
+          <mat-error>
+            <app-validations
+              [control]="form.get(fields.name.name)"
+              [label]="fields.name.label"
+            ></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="filter-buttons">
+      <button
+        mat-flat-button
+        [disabled]="loading"
+        color="primary"
+        type="submit"
+      >
+        <mat-icon
+          inline
+          fontSet="fas"
+          fontIcon="fa-search"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.search"></app-i18n>
+      </button>
+      <button
+        mat-flat-button
+        [disabled]="loading"
+        (click)="doReset()"
+        type="button"
+      >
+        <mat-icon
+          inline
+          fontSet="fas"
+          fontIcon="fa-undo"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.reset"></app-i18n>
+      </button>
+    </div>
+  </form>
+</mat-expansion-panel>

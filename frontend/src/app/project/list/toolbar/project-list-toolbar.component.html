@@ -14,21 +14,6 @@
     <app-i18n key="common.new"></app-i18n>
   </button>
 
-  <button
-    *ngIf="hasPermissionToImport"
-    [routerLink]="'/project/import'"
-    mat-flat-button
-    color="primary"
-  >
-    <mat-icon
-      inline
-      fontSet="fas"
-      fontIcon="fa-file-import"
-    ></mat-icon
-    >&#160;
-    <app-i18n key="common.import"></app-i18n>
-  </button>
-
   <span
     *ngIf="hasPermissionToDestroy"
     [matTooltip]="destroyButtonTooltip"

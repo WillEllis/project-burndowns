@@ -1,8 +1,6 @@
 const schema = `
   input TeamFilterInput {
-    id: String
     name: String
-    createdAtRange: [ DateTime ]
   }
 `;
 

@@ -35,10 +35,6 @@ export class ProjectListTableComponent {
     return this.projectService.hasPermissionToEdit;
   }
 
-  get hasPermissionToDestroy() {
-    return this.projectService.hasPermissionToDestroy;
-  }
-
   get fields() {
     return ProjectModel.fields;
   }
@@ -46,10 +42,8 @@ export class ProjectListTableComponent {
   get columns() {
     return [
       '_select',
-      this.fields.id.name,
       this.fields.name.name,
       this.fields.initialEstimate.name,
-      this.fields.createdAt.name,
       '_actions',
     ];
   }

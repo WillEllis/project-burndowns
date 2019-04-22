@@ -1,8 +1,6 @@
 const schema = `
   input ProjectFilterInput {
-    id: String
-
-    createdAtRange: [ DateTime ]
+    name: String
   }
 `;
 

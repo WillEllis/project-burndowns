@@ -23,15 +23,6 @@
       </td>
     </ng-container>
 
-    <ng-container [matColumnDef]="fields.id.name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ fields.id.label }}
-      </th>
-      <td mat-cell *matCellDef="let row">
-        {{ presenter(row, 'id') }}
-      </td>
-    </ng-container>
-
     <ng-container
       [matColumnDef]="fields.name.name"
     >
@@ -50,15 +41,6 @@
       </th>
       <td mat-cell *matCellDef="let row">
         {{ presenter(row, 'initialEstimate') }}
-      </td>
-    </ng-container>
-
-    <ng-container [matColumnDef]="fields.createdAt.name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ fields.createdAt.label }}
-      </th>
-      <td mat-cell *matCellDef="let row">
-        {{ presenter(row, 'createdAt') }}
       </td>
     </ng-container>
 
@@ -88,16 +70,6 @@
           <app-i18n key="common.edit"></app-i18n>
         </button>
 
-        <button
-          *ngIf="hasPermissionToDestroy"
-          (click)="doDestroy(row.id)"
-          mat-button
-          color="accent"
-          type="button"
-          [disabled]="destroyService.loading"
-        >
-          <app-i18n key="common.destroy"></app-i18n>
-        </button>
       </td>
     </ng-container>
 

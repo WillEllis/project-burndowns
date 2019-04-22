@@ -1,7 +1,7 @@
 <app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
 
 <div class="app-content-page">
-  <h1 class="app-content-title">
+  <h3 class="app-content-title">
     <app-i18n
       *ngIf="isEditing"
       key="entities.phase.edit.title"
@@ -11,7 +11,7 @@
       *ngIf="!isEditing"
       key="entities.phase.new.title"
     ></app-i18n>
-  </h1>
+  </h3>
 
   <div *ngIf="findLoading" class="app-page-spinner">
     <mat-spinner color="accent"></mat-spinner>

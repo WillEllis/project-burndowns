@@ -10,7 +10,6 @@ import { ProjectListToolbarComponent } from 'src/app/project/list/toolbar/projec
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectViewToolbarComponent } from 'src/app/project/view/project-view-toolbar.component';
 import { ImporterService } from 'src/app/shared/importer/importer.service';
-import { ProjectImporterService } from 'src/app/project/importer/project-importer.service';
 
 @NgModule({
   declarations: [
@@ -25,12 +24,6 @@ import { ProjectImporterService } from 'src/app/project/importer/project-importe
     ProjectRoutingModule,
     LayoutModule,
   ],
-  exports: [],
-  providers: [
-    {
-      provide: ImporterService,
-      useClass: ProjectImporterService,
-    },
-  ],
+  exports: []
 })
 export class ProjectModule {}
