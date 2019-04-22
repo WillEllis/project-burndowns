@@ -1,0 +1,70 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="entities.sprint.view.title"></app-i18n>
+  </h1>
+
+  <app-sprint-view-toolbar></app-sprint-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.id.label"
+      [value]="presenter(record, 'id')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.number.label"
+      [value]="presenter(record, 'number')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.startDate.label"
+      [value]="presenter(record, 'startDate')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.fastTrack.label"
+      [value]="presenter(record, 'fastTrack')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.endDate.label"
+      [value]="presenter(record, 'endDate')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.estimatedVelocity.label"
+      [value]="presenter(record, 'estimatedVelocity')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.actualVelocity.label"
+      [value]="presenter(record, 'actualVelocity')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.status.label"
+      [value]="presenter(record, 'status')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.comments.label"
+      [value]="presenter(record, 'comments')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.createdAt.label"
+      [value]="presenter(record, 'createdAt')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.updatedAt.label"
+      [value]="presenter(record, 'updatedAt')"
+    ></app-view-item-text>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<form
+  class="filter"
+  (ngSubmit)="doFilter()"
+  [formGroup]="form"
+  #ngForm="ngForm"
+  *ngIf="form"
+>
+  <div class="row">
+    <div class="col-xs-12 col-lg-6">
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="fields.id.name"
+          [placeholder]="fields.id.label"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.id.name)"
+            [label]="fields.id.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-xs-12 col-lg-6">
+      <mat-form-field>
+        <app-date-time-range-input
+          [formControl]="
+            form.get(fields.createdAtRange.name)
+          "
+          [placeholder]="fields.createdAtRange.label"
+        ></app-date-time-range-input>
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.createdAtRange.name)"
+            [label]="fields.createdAtRange.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+  </div>
+
+  <div class="filter-buttons">
+    <button
+      mat-flat-button
+      [disabled]="loading"
+      color="primary"
+      type="submit"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-search"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.search"></app-i18n>
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="loading"
+      (click)="doReset()"
+      type="button"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-undo"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+  </div>
+</form>

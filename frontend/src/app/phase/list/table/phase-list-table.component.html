@@ -1,0 +1,121 @@
+<div class="table-responsive">
+  <table
+    style="width: 100%"
+    mat-table
+    [dataSource]="service.rows"
+    matSort
+    (matSortChange)="service.doChangeSort($event)"
+    [matSortActive]="service.sorter.columnKey"
+    [matSortDirection]="service.sorter.order"
+  >
+    <ng-container matColumnDef="_select">
+      <th mat-header-cell *matHeaderCellDef>
+        <app-table-th-checkbox
+          [rows]="service.rows"
+          [selectedKeys]="service.selectedKeys"
+        ></app-table-th-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <app-table-td-checkbox
+          [row]="row"
+          [selectedKeys]="service.selectedKeys"
+        ></app-table-td-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="fields.id.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.id.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'id') }}
+      </td>
+    </ng-container>
+
+    <ng-container
+      [matColumnDef]="fields.name.name"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.name.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'name') }}
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="fields.createdAt.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ fields.createdAt.label }}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ presenter(row, 'createdAt') }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="_actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td
+        style="width: 200px"
+        mat-cell
+        *matCellDef="let row"
+      >
+        <button
+          [routerLink]="['/phase', row.id]"
+          mat-button
+          color="accent"
+          type="button"
+        >
+          <app-i18n key="common.view"></app-i18n>
+        </button>
+
+        <button
+          *ngIf="hasPermissionToEdit"
+          [routerLink]="['/phase', row.id, 'edit']"
+          mat-button
+          color="accent"
+          type="button"
+        >
+          <app-i18n key="common.edit"></app-i18n>
+        </button>
+
+        <button
+          *ngIf="hasPermissionToDestroy"
+          (click)="doDestroy(row.id)"
+          mat-button
+          color="accent"
+          type="button"
+          [disabled]="destroyService.loading"
+        >
+          <app-i18n key="common.destroy"></app-i18n>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: this.columns"
+    ></tr>
+  </table>
+
+  <div
+    *ngIf="!service.loading && !service.count"
+    class="mat-table-message"
+  >
+    <app-i18n key="table.noData"></app-i18n>
+  </div>
+
+  <div *ngIf="service.loading" class="mat-table-message">
+    <app-i18n key="table.loading"></app-i18n>
+  </div>
+</div>
+
+<mat-paginator
+  [disabled]="service.loading"
+  [pageIndex]="service.paginationPageIndex"
+  [pageSize]="service.paginationPageSize"
+  [pageSizeOptions]="[10, 20, 30, 40]"
+  [length]="service.count"
+  (page)="service.doChangePagination($event)"
+  showFirstLastButtons
+></mat-paginator>

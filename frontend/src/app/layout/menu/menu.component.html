@@ -1,0 +1,91 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="">
+    <mat-icon>home</mat-icon>
+    <span><app-i18n key="home.menu"></app-i18n></span>
+  </a>
+  
+  <a
+    *ngIf="projectService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/project"
+  >
+    <mat-icon>work</mat-icon>
+    <span
+      ><app-i18n key="entities.project.menu"></app-i18n
+    ></span>
+  </a>
+  <a
+    *ngIf="sprintService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/sprint"
+  >
+    <mat-icon>update</mat-icon>
+    <span
+      ><app-i18n key="entities.sprint.menu"></app-i18n
+    ></span>
+  </a>
+  <a
+    *ngIf="complexityChangeService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/complexity-change"
+  >
+    <mat-icon>trending_up</mat-icon>
+    <span
+      ><app-i18n key="entities.complexityChange.menu"></app-i18n
+    ></span>
+  </a>
+  <a
+    *ngIf="phaseService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/phase"
+  >
+    <mat-icon>sort</mat-icon>
+    <span
+      ><app-i18n key="entities.phase.menu"></app-i18n
+    ></span>
+  </a>
+  <a
+    *ngIf="storyService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/story"
+  >
+    <mat-icon>list</mat-icon>
+    <span
+      ><app-i18n key="entities.story.menu"></app-i18n
+    ></span>
+  </a>
+  <a
+    *ngIf="teamService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/team"
+  >
+    <mat-icon>group</mat-icon>
+    <span
+      ><app-i18n key="entities.team.menu"></app-i18n
+    ></span>
+  </a>
+  <a
+    *ngIf="iamService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/iam"
+  >
+    <mat-icon>person_add</mat-icon>
+    <span><app-i18n key="iam.menu"></app-i18n></span>
+  </a>
+  <a
+    *ngIf="auditLogService.hasPermissionToRead"
+    mat-list-item
+    routerLink="/audit-log"
+  >
+    <mat-icon>history</mat-icon>
+    <span><app-i18n key="auditLog.menu"></app-i18n></span>
+  </a>
+  <a
+    *ngIf="settingsService.hasPermissionToEdit"
+    mat-list-item
+    routerLink="/settings"
+  >
+    <mat-icon>settings</mat-icon>
+    <span><app-i18n key="settings.menu"></app-i18n></span>
+  </a>
+</mat-nav-list>

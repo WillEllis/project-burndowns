@@ -1,0 +1,83 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="iam.view.title"></app-i18n>
+  </h1>
+
+  <app-iam-view-toolbar></app-iam-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.id.label"
+      [value]="presenter(record, 'id')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.email.label"
+      [value]="presenter(record, 'email')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.firstName.label"
+      [value]="presenter(record, 'firstName')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.lastName.label"
+      [value]="presenter(record, 'lastName')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.phoneNumber.label"
+      [value]="presenter(record, 'phoneNumber')"
+      prefix="+"
+    ></app-view-item-text>
+
+    <app-view-item-images
+      [label]="fields.avatarsIam.label"
+      [value]="presenter(record, 'avatarsIam')"
+    ></app-view-item-images>
+
+    <app-view-item-custom
+      [label]="fields.disabledAsStatus.label"
+      [value]="presenter(record, 'disabledAsStatus')"
+    >
+      <strong
+        [ngClass]="{
+          'text-green': !record[
+            fields.disabledAsStatus.name
+          ],
+          'text-red': record[fields.disabledAsStatus.name]
+        }"
+        >{{ presenter(record, 'disabledAsStatus') }}
+      </strong>
+    </app-view-item-custom>
+
+    <app-view-item-custom
+      [label]="fields.roles.label"
+      [value]="record.roles"
+    >
+      <span
+        *ngFor="let roleId of record.roles"
+        [matTooltip]="roleDescriptionOf(roleId)"
+      >
+        {{ roleLabelOf(roleId) }} <br />
+      </span>
+    </app-view-item-custom>
+
+    <app-view-item-text
+      [label]="fields.createdAt.label"
+      [value]="presenter(record, 'createdAt')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.updatedAt.label"
+      [value]="presenter(record, 'updatedAt')"
+    ></app-view-item-text>
+  </div>
+</div>

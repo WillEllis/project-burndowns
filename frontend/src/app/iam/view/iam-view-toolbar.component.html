@@ -1,0 +1,69 @@
+<div class="app-page-toolbar">
+  <button
+    *ngIf="record && hasPermissionToEdit"
+    [routerLink]="['/iam', record.id, 'edit']"
+    mat-flat-button
+    color="primary"
+  >
+    <mat-icon
+      inline
+      fontSet="far"
+      fontIcon="fa-edit"
+    ></mat-icon
+    >&#160;
+    <app-i18n key="common.edit"></app-i18n>
+  </button>
+
+  <button
+    *ngIf="record && hasPermissionToEdit"
+    mat-flat-button
+    color="primary"
+    (click)="service.doToggleStatus()"
+    [disabled]="service.loading"
+  >
+    <mat-icon
+      inline
+      fontSet="fas"
+      [fontIcon]="record.disabled ? 'fa-check' : 'fa-ban'"
+    ></mat-icon
+    >&#160;
+    <app-i18n
+      *ngIf="record.disabled"
+      key="iam.enable"
+    ></app-i18n>
+    <app-i18n
+      *ngIf="!record.disabled"
+      key="iam.disable"
+    ></app-i18n>
+  </button>
+
+  <button
+    *ngIf="record && hasPermissionToAuditLogs"
+    mat-stroked-button
+    [routerLink]="['/audit-log']"
+    [queryParams]="{ entityId: record.id }"
+  >
+    <mat-icon
+      inline
+      fontSet="fas"
+      fontIcon="fa-history"
+    ></mat-icon
+    >&#160;
+    <app-i18n key="auditLog.menu"></app-i18n>
+  </button>
+
+  <button
+    *ngIf="record && hasPermissionToAuditLogs"
+    mat-stroked-button
+    [routerLink]="['/audit-log']"
+    [queryParams]="{ createdByEmail: record.email }"
+  >
+    <mat-icon
+      inline
+      fontSet="far"
+      fontIcon="fa-eye"
+    ></mat-icon
+    >&#160;
+    <app-i18n key="iam.view.activity"></app-i18n>
+  </button>
+</div>

@@ -1,0 +1,37 @@
+<div
+  class="app-container"
+  [class.app-is-mobile]="mobileQuery.matches"
+>
+  <mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="app-title">
+      <app-i18n key="app.title"></app-i18n>
+    </h1>
+    <div class="app-toolbar-spacer"></div>
+    <app-i18n-select class="hide-xs"></app-i18n-select>
+    <app-menu-user></app-menu-user>
+  </mat-toolbar>
+
+  <mat-sidenav-container
+    class="app-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      class="app-sidenav mat-elevation-z1"
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <app-menu></app-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="app-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

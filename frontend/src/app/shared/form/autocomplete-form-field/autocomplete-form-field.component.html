@@ -1,0 +1,36 @@
+<mat-form-field>
+  <input
+    matInput
+    [placeholder]="label"
+    [matAutocomplete]="auto"
+    [formControl]="control"
+    [appAutofocus]="appAutofocus"
+    (blur)="clearIfNonSelected()"
+    (input)="debouncedSearch($event.target.value)"
+  />
+
+  <mat-error>
+    <app-validations
+      [control]="control"
+      [label]="label"
+    ></app-validations>
+  </mat-error>
+</mat-form-field>
+
+<mat-autocomplete
+  #auto="matAutocomplete"
+  [displayWith]="displayFn"
+  autoActiveFirstOption
+>
+  <mat-option *ngIf="loading" class="mat-option-spinner">
+    <mat-spinner color="accent" diameter="50"></mat-spinner>
+  </mat-option>
+  <ng-container *ngIf="!loading">
+    <mat-option
+      *ngFor="let record of dataSource"
+      [value]="record"
+    >
+      <span>{{ record.label }}</span>
+    </mat-option>
+  </ng-container>
+</mat-autocomplete>

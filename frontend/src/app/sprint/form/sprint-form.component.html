@@ -1,0 +1,210 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n
+      *ngIf="isEditing"
+      key="entities.sprint.edit.title"
+    ></app-i18n>
+
+    <app-i18n
+      *ngIf="!isEditing"
+      key="entities.sprint.new.title"
+    ></app-i18n>
+  </h1>
+
+  <div *ngIf="findLoading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <form
+    class="form"
+    (ngSubmit)="doSave()"
+    [formGroup]="form"
+    #ngForm="ngForm"
+    *ngIf="form && !findLoading"
+  >
+    <mat-form-field *ngIf="isEditing">
+      <input
+        matInput
+        [placeholder]="fields.id.label"
+        [value]="record.id"
+        [disabled]="true"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [formControlName]="fields.number.name"
+        [placeholder]="fields.number.label"
+        [required]="fields.number.required"
+        type="number"
+        step="1"
+      appAutofocus
+      />
+
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.number.name)"
+          [label]="fields.number.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="date"
+        [formControlName]="fields.startDate.name"
+        [placeholder]="fields.startDate.label"
+        [required]="fields.startDate.required"
+      />
+
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.startDate.name)"
+          [label]="fields.startDate.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="app-form-field app-form-field__boolean">
+      <mat-slide-toggle
+        color="accent"
+        [formControlName]="fields.fastTrack.name"
+      >
+        {{ fields.fastTrack.label }}
+      </mat-slide-toggle>
+
+      <div class="app-form-error">
+        <app-validations
+          [control]="form.get(fields.fastTrack.name)"
+          [label]="fields.fastTrack.label"
+          [ngForm]="ngForm"
+        ></app-validations>
+      </div>
+    </div>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="date"
+        [formControlName]="fields.endDate.name"
+        [placeholder]="fields.endDate.label"
+        [required]="fields.endDate.required"
+      />
+
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.endDate.name)"
+          [label]="fields.endDate.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [formControlName]="fields.estimatedVelocity.name"
+        [placeholder]="fields.estimatedVelocity.label"
+        [required]="fields.estimatedVelocity.required"
+        type="number"
+        step="1"
+      />
+
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.estimatedVelocity.name)"
+          [label]="fields.estimatedVelocity.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [formControlName]="fields.actualVelocity.name"
+        [placeholder]="fields.actualVelocity.label"
+        [required]="fields.actualVelocity.required"
+        type="number"
+        step="1"
+      />
+
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.actualVelocity.name)"
+          [label]="fields.actualVelocity.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+        [formControlName]="fields.status.name"
+        [placeholder]="fields.status.label"
+      >
+        <mat-option>--</mat-option>
+        <mat-option
+          *ngFor="let option of fields.status.options"
+          [value]="option.id"
+        >
+          {{ option.label }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.status.name)"
+          [label]="fields.status.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        [formControlName]="fields.comments.name"
+        [placeholder]="fields.comments.label"
+        [required]="fields.comments.required"
+      />
+
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.comments.name)"
+          [label]="fields.comments.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-buttons">
+      <button
+        mat-flat-button
+        [disabled]="saveLoading"
+        color="primary"
+        type="submit"
+      >
+        <mat-icon
+          inline
+          fontSet="far"
+          fontIcon="fa-save"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.save"></app-i18n>
+      </button>
+      <button
+        mat-flat-button
+        [disabled]="saveLoading"
+        (click)="doReset()"
+        type="button"
+      >
+        <mat-icon
+          inline
+          fontSet="fas"
+          fontIcon="fa-undo"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.reset"></app-i18n>
+      </button>
+    </div>
+  </form>
+</div>

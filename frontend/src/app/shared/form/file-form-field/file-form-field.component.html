@@ -1,0 +1,73 @@
+<mat-form-field>
+  <div class="file-form-field">
+    <input
+      type="text"
+      matInput
+      readonly
+      placeholder="{{ label }}"
+      [required]="!!required"
+    />
+
+    <button
+      [disabled]="loading || isFull"
+      mat-icon-button
+      type="button"
+      color="accent"
+    >
+      <mat-icon>attach_file</mat-icon>
+
+      <input
+        [disabled]="loading || isFull"
+        class="file-input"
+        type="file"
+        (change)="add($event)"
+        #fileInput
+        [accept]="accept"
+      />
+    </button>
+  </div>
+
+  <mat-progress-bar
+    color="accent"
+    *ngIf="loading"
+    mode="indeterminate"
+  ></mat-progress-bar>
+</mat-form-field>
+
+<div style="margin-top: -16px" class="app-form-error">
+  <app-validations
+    *ngIf="submitted"
+    [control]="control"
+    [label]="label"
+  ></app-validations>
+
+  {{ localError }}
+</div>
+
+<div class="app-form-field" *ngIf="value && value.length">
+  <div class="file-form-field-list">
+    <div
+      class="file-form-field-list-item"
+      *ngFor="let item of value"
+    >
+      <mat-icon>attach_file</mat-icon>
+
+      <a
+        class="file-form-field-list-item-name"
+        [href]="item.publicUrl"
+        target="_blank"
+        download
+      >
+        {{ item.name }}
+      </a>
+
+      <button
+        mat-icon-button
+        type="button"
+        (click)="remove(item.id)"
+      >
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

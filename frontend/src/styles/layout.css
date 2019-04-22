@@ -1,0 +1,205 @@
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .hide-xs {
+    display: none;
+  }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.app-is-mobile .app-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+h1.app-title {
+  margin-left: 8px;
+}
+
+.app-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.app-sidenav {
+  width: 200px;
+}
+
+.app-sidenav .mat-list-item-content {
+  color: #757575;
+}
+
+.app-sidenav .mat-list-item-content .mat-icon {
+  margin-right: 24px;
+}
+
+.app-is-mobile .app-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+.app-toolbar {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.app-content {
+  margin: 24px;
+}
+
+.app-content-page {
+  margin-top: 16px;
+  padding: 24px;
+  background: #fff;
+  overflow-y: hidden;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.app-content-title {
+  margin-top: 0;
+  margin-bottom: 36px;
+  color: rgba(0,0,0,0.85);
+  font-weight: 500;
+}
+
+.app-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.app-avatar {
+  border: 1px solid #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.65);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  background: #ccc;
+  color: #fff;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 50%;
+}
+
+.app-avatar > * {
+  line-height: 32px;
+}
+
+.app-avatar.app-avatar-sm {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+}
+
+.app-avatar.app-avatar-sm > * {
+  line-height: 24px;
+}
+
+.app-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.app-breadcrumb {
+  line-height: 1.5;
+  color: rgba(0,0,0,0.65);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(0,0,0,0.45);
+  font-size: 14px;
+}
+
+.app-breadcrumb-separator {
+  margin: 0 8px;
+  color: rgba(0,0,0,0.45);
+}
+
+.app-breadcrumb-item {
+  line-height: 1.5;
+  color: rgba(0,0,0,0.65);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(0,0,0,0.45);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.app-page-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-page-toolbar {
+  margin-bottom: 24px;
+}
+
+.app-page-toolbar button {
+  margin-right: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.app-alert {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.65);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  padding: 8px 15px 8px 15px;
+  border-radius: 4px;
+}
+
+.app-alert-error {
+  border: 1px solid #ffa39e;
+  background-color: #fff1f0;
+}
+
+.app-alert-success {
+  border: 1px solid #b7eb8f;
+  background-color: #f6ffed;
+}
+
+.app-alert-warning {
+  border: 1px solid #ffe58f;
+  background-color: #fffbe6;
+}
+
+.app-alert-info {
+  border: 1px solid #91d5ff;
+  background-color: #e6f7ff;
+}

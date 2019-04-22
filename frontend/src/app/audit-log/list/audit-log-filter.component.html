@@ -1,0 +1,110 @@
+<form
+  class="filter"
+  (ngSubmit)="doFilter()"
+  [formGroup]="form"
+  #ngForm="ngForm"
+  *ngIf="form"
+>
+  <div class="row">
+    <div class="col-xs-12 col-lg-6">
+      <mat-form-field>
+        <app-date-time-range-input
+          [formControlName]="fields.timestampRange.name"
+          [placeholder]="fields.timestampRange.label"
+          [required]="fields.timestampRange.required"
+        ></app-date-time-range-input>
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.timestampRange.name)"
+            [label]="fields.timestampRange.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="fields.createdByEmail.name"
+          [placeholder]="fields.createdByEmail.label"
+          [required]="fields.createdByEmail.required"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.createdByEmail.name)"
+            [label]="fields.createdByEmail.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+      <app-tag-form-field
+        [control]="form.get(fields.entityNames.name)"
+        [label]="fields.entityNames.label"
+      ></app-tag-form-field>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="fields.entityId.name"
+          [placeholder]="fields.entityId.label"
+          [required]="fields.entityId.required"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.entityId.name)"
+            [label]="fields.entityId.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-xs-12 col-lg-6">
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="fields.action.name"
+          [placeholder]="fields.action.label"
+          [required]="fields.action.required"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.action.name)"
+            [label]="fields.action.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="filter-buttons">
+    <button
+      mat-flat-button
+      [disabled]="loading"
+      color="primary"
+      type="submit"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-search"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.search"></app-i18n>
+    </button>
+    <button
+      mat-flat-button
+      [disabled]="loading"
+      (click)="doReset()"
+      type="button"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-undo"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.reset"></app-i18n>
+    </button>
+  </div>
+</form>

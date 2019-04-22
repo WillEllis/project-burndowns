@@ -1,0 +1,47 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="entities.phase.view.title"></app-i18n>
+  </h1>
+
+  <app-phase-view-toolbar></app-phase-view-toolbar>
+
+  <div *ngIf="loading" class="app-page-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <app-view-item-text
+      [label]="fields.id.label"
+      [value]="presenter(record, 'id')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.order.label"
+      [value]="presenter(record, 'order')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.name.label"
+      [value]="presenter(record, 'name')"
+    ></app-view-item-text>
+
+    <app-view-item-relation-to-many
+      [label]="fields.stories.label"
+      [url]="fields.stories.viewUrl"
+      [permission]="fields.stories.readPermission"
+      [value]="presenter(record, 'stories')"
+    ></app-view-item-relation-to-many>
+
+    <app-view-item-text
+      [label]="fields.createdAt.label"
+      [value]="presenter(record, 'createdAt')"
+    ></app-view-item-text>
+
+    <app-view-item-text
+      [label]="fields.updatedAt.label"
+      [value]="presenter(record, 'updatedAt')"
+    ></app-view-item-text>
+  </div>
+</div>

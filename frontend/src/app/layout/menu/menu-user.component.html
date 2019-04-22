@@ -1,0 +1,25 @@
+<button mat-button [matMenuTriggerFor]="menu">
+  <div style="display: flex; justify-items: baseline">
+    <app-avatar
+      [src]="currentUserAvatar"
+      [alt]="currentUserNameOrEmailPrefix"
+      small="true"
+      style="margin-right: 8px"
+    ></app-avatar>
+    <span class="hide-xs">{{
+      currentUserNameOrEmailPrefix
+    }}</span>
+    <mat-icon style="line-height: 36px"
+      >arrow_drop_down</mat-icon
+    >
+  </div>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button [routerLink]="['/auth/profile']" mat-menu-item>
+    <mat-icon>person</mat-icon> <app-i18n key="auth.profile.title"></app-i18n>
+  </button>
+  <button (click)="doSignout()" mat-menu-item>
+    <mat-icon>power_settings_new</mat-icon> <app-i18n key="auth.signout"></app-i18n>
+  </button>
+</mat-menu>

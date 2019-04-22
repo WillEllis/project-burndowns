@@ -1,0 +1,122 @@
+<div class="app-page-toolbar">
+  <button
+    *ngIf="hasPermissionToCreate"
+    [routerLink]="'/iam/new'"
+    mat-flat-button
+    color="primary"
+  >
+    <mat-icon
+      fontSet="fas"
+      fontIcon="fa-plus"
+      inline
+    ></mat-icon
+    >&#160;
+    <app-i18n key="common.new"></app-i18n>
+  </button>
+
+  <button
+    *ngIf="hasPermissionToImport"
+    [routerLink]="'/iam/import'"
+    mat-flat-button
+    color="primary"
+  >
+    <mat-icon
+      inline
+      fontSet="fas"
+      fontIcon="fa-file-import"
+    ></mat-icon
+    >&#160;
+    <app-i18n key="common.import"></app-i18n>
+  </button>
+
+  <span
+    *ngIf="hasPermissionToEdit"
+    [matTooltip]="removeButtonTooltip"
+  >
+    <button
+      [disabled]="removeButtonDisabled"
+      (click)="doRemoveAllSelected()"
+      mat-flat-button
+      color="primary"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-times"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.remove"></app-i18n>
+    </button>
+  </span>
+
+  <span
+    *ngIf="hasPermissionToEdit"
+    [matTooltip]="enableButtonTooltip"
+  >
+    <button
+      [disabled]="enableButtonDisabled"
+      (click)="doEnableAllSelected()"
+      mat-flat-button
+      color="primary"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-check"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="iam.enable"></app-i18n>
+    </button>
+  </span>
+
+  <span
+    *ngIf="hasPermissionToEdit"
+    [matTooltip]="disableButtonTooltip"
+  >
+    <button
+      [disabled]="disableButtonDisabled"
+      (click)="doDisableAllSelected()"
+      mat-flat-button
+      color="primary"
+    >
+      <mat-icon
+        inline
+        fontSet="fas"
+        fontIcon="fa-ban"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="iam.disable"></app-i18n>
+    </button>
+  </span>
+
+  <button
+    *ngIf="hasPermissionToAuditLogs"
+    mat-stroked-button
+    [routerLink]="['/audit-log']"
+    [queryParams]="{ entityNames: 'user' }"
+  >
+    <mat-icon
+      inline
+      fontSet="fas"
+      fontIcon="fa-history"
+    ></mat-icon
+    >&#160;
+    <app-i18n key="auditLog.menu"></app-i18n>
+  </button>
+
+  <span [matTooltip]="exportButtonTooltip">
+    <button
+      [disabled]="exportButtonDisabled"
+      (click)="doExport()"
+      mat-stroked-button
+    >
+      <mat-icon
+        inline
+        fontSet="far"
+        fontIcon="fa-file-excel"
+      ></mat-icon
+      >&#160;
+      <app-i18n key="common.export"></app-i18n>
+    </button>
+  </span>
+</div>

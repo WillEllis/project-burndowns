@@ -1,0 +1,135 @@
+<app-breadcrumb [items]="breadcrumb"></app-breadcrumb>
+
+<div class="app-content-page">
+  <h1 class="app-content-title">
+    <app-i18n key="iam.new.title"></app-i18n>
+  </h1>
+
+  <form
+    class="form"
+    (ngSubmit)="doSave()"
+    [formGroup]="form"
+    #ngForm="ngForm"
+    *ngIf="form"
+  >
+    <app-tag-form-field
+      [control]="form.get(fields.emails.name)"
+      [label]="fields.emails.label"
+      [required]="fields.emails.required"
+      appAutofocus
+    ></app-tag-form-field>
+
+    <ng-container *ngIf="isUniqueEmail">
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="fields.firstName.name"
+          [placeholder]="fields.firstName.label"
+          [required]="fields.firstName.required"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.firstName.name)"
+            [label]="fields.firstName.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [formControlName]="fields.lastName.name"
+          [placeholder]="fields.lastName.label"
+          [required]="fields.lastName.required"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.lastName.name)"
+            [label]="fields.lastName.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <span matPrefix>+&nbsp;</span>
+
+        <input
+          matInput
+          [formControlName]="fields.phoneNumber.name"
+          [placeholder]="fields.phoneNumber.label"
+          [required]="fields.phoneNumber.required"
+        />
+        <mat-error>
+          <app-validations
+            [control]="form.get(fields.phoneNumber.name)"
+            [label]="fields.phoneNumber.label"
+          ></app-validations>
+        </mat-error>
+      </mat-form-field>
+
+      <app-image-form-field
+        [formControl]="form.get(fields.avatarsIam.name)"
+        [label]="fields.avatarsIam.label"
+        [path]="fields.avatarsIam.path"
+        [schema]="fields.avatarsIam.fileSchema"
+        [required]="fields.avatarsIam.required"
+        [max]="fields.avatarsIam.max"
+        [submitted]="ngForm.submitted"
+      ></app-image-form-field>
+    </ng-container>
+
+    <mat-form-field>
+      <mat-select
+        [placeholder]="fields.rolesRequired.label"
+        [formControlName]="fields.rolesRequired.name"
+        [required]="fields.rolesRequired.required"
+        multiple
+      >
+        <mat-option
+          *ngFor="
+            let option of fields.rolesRequired.options
+          "
+          [value]="option.value"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+      <mat-error>
+        <app-validations
+          [control]="form.get(fields.rolesRequired.name)"
+          [label]="fields.rolesRequired.label"
+        ></app-validations>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-buttons">
+      <button
+        mat-flat-button
+        [disabled]="saveLoading"
+        color="primary"
+        type="submit"
+      >
+        <mat-icon
+          inline
+          fontSet="far"
+          fontIcon="fa-save"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.save"></app-i18n>
+      </button>
+      <button
+        mat-flat-button
+        [disabled]="saveLoading"
+        (click)="doReset()"
+        type="button"
+      >
+        <mat-icon
+          inline
+          fontSet="fas"
+          fontIcon="fa-undo"
+        ></mat-icon
+        >&#160;
+        <app-i18n key="common.reset"></app-i18n>
+      </button>
+    </div>
+  </form>
+</div>
