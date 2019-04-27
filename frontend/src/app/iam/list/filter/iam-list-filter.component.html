@@ -1,146 +1,84 @@
-<form
-  class="filter"
-  (ngSubmit)="doFilter()"
-  [formGroup]="form"
-  #ngForm="ngForm"
-  *ngIf="form"
->
-  <div class="row">
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <input
-          matInput
-          [formControlName]="fields.id.name"
-          [placeholder]="fields.id.label"
-        />
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.id.name)"
-            [label]="fields.id.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <app-date-time-range-input
-          [formControl]="
+<mat-expansion-panel class="filter">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <app-i18n key="common.search"></app-i18n>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <form (ngSubmit)="doFilter()" [formGroup]="form" #ngForm="ngForm" *ngIf="form">
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <input matInput [formControlName]="fields.id.name" [placeholder]="fields.id.label" />
+          <mat-error>
+            <app-validations [control]="form.get(fields.id.name)" [label]="fields.id.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <app-date-time-range-input [formControl]="
             form.get(fields.createdAtRange.name)
           "
-          [placeholder]="fields.createdAtRange.label"
-        ></app-date-time-range-input>
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.createdAtRange.name)"
-            [label]="fields.createdAtRange.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
+            [placeholder]="fields.createdAtRange.label"></app-date-time-range-input>
+          <mat-error>
+            <app-validations [control]="form.get(fields.createdAtRange.name)" [label]="fields.createdAtRange.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <input matInput [formControlName]="fields.email.name" [placeholder]="fields.email.label" />
+          <mat-error>
+            <app-validations [control]="form.get(fields.email.name)" [label]="fields.email.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <input matInput [formControlName]="fields.fullName.name" [placeholder]="fields.fullName.label" />
+          <mat-error>
+            <app-validations [control]="form.get(fields.fullName.name)" [label]="fields.fullName.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <mat-select [formControlName]="fields.status.name" [placeholder]="fields.status.label">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of fields.status.options" [value]="option.id">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.status.name)" [label]="fields.status.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <mat-form-field>
+          <mat-select [formControlName]="fields.role.name" [placeholder]="fields.role.label">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let option of fields.role.options" [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-validations [control]="form.get(fields.role.name)" [label]="fields.role.label"></app-validations>
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <input
-          matInput
-          [formControlName]="fields.email.name"
-          [placeholder]="fields.email.label"
-        />
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.email.name)"
-            [label]="fields.email.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <input
-          matInput
-          [formControlName]="fields.fullName.name"
-          [placeholder]="fields.fullName.label"
-        />
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.fullName.name)"
-            [label]="fields.fullName.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <mat-select
-          [formControlName]="fields.status.name"
-          [placeholder]="fields.status.label"
-        >
-          <mat-option>--</mat-option>
-          <mat-option
-            *ngFor="let option of fields.status.options"
-            [value]="option.id"
-          >
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.status.name)"
-            [label]="fields.status.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-xs-12 col-lg-6">
-      <mat-form-field>
-        <mat-select
-          [formControlName]="fields.role.name"
-          [placeholder]="fields.role.label"
-        >
-          <mat-option>--</mat-option>
-          <mat-option
-            *ngFor="let option of fields.role.options"
-            [value]="option.value"
-          >
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-        <mat-error>
-          <app-validations
-            [control]="form.get(fields.role.name)"
-            [label]="fields.role.label"
-          ></app-validations>
-        </mat-error>
-      </mat-form-field>
-    </div>
-  </div>
 
-  <div class="filter-buttons">
-    <button
-      mat-flat-button
-      [disabled]="loading"
-      color="primary"
-      type="submit"
-    >
-      <mat-icon
-        inline
-        fontSet="fas"
-        fontIcon="fa-search"
-      ></mat-icon
-      >&#160;
-      <app-i18n key="common.search"></app-i18n>
-    </button>
-    <button
-      mat-flat-button
-      [disabled]="loading"
-      (click)="doReset()"
-      type="button"
-    >
-      <mat-icon
-        inline
-        fontSet="fas"
-        fontIcon="fa-undo"
-      ></mat-icon
-      >&#160;
-      <app-i18n key="common.reset"></app-i18n>
-    </button>
-  </div>
-</form>
+    <div class="filter-buttons">
+      <button mat-flat-button [disabled]="loading" color="primary" type="submit">
+        <mat-icon inline fontSet="fas" fontIcon="fa-search"></mat-icon>&#160;
+        <app-i18n key="common.search"></app-i18n>
+      </button>
+      <button mat-flat-button [disabled]="loading" (click)="doReset()" type="button">
+        <mat-icon inline fontSet="fas" fontIcon="fa-undo"></mat-icon>&#160;
+        <app-i18n key="common.reset"></app-i18n>
+      </button>
+    </div>
+  </form>
+</mat-expansion-panel>
