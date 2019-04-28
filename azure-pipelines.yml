@@ -4,9 +4,32 @@ pool:
 
 steps:
 - task: Npm@1
-  displayName: 'npm install'
+  displayName: 'npm install - frontend'
   inputs:
+    workingDir: frontend
     verbose: false
+
+- task: Npm@1
+  displayName: 'npm build - frontend'
+  inputs:
+    command: custom
+    workingDir: frontend
+    verbose: false
+    customCommand: 'run build:development'
+
+- task: Npm@1
+  displayName: 'npm install - backend'
+  inputs:
+    workingDir: backend
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm build - backend'
+  inputs:
+    command: custom
+    workingDir: backend
+    verbose: false
+    customCommand: 'run build:development'
 
 - task: ArchiveFiles@2
   displayName: 'Archive files'
