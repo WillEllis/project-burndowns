@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "development": "project-burndowns",
+    "production": "project-burndowns"
+  }
+}
