@@ -1,8 +1,21 @@
 language: node_js
 node_js:
   - "node"
-script:
-  -
+matrix:
+  fast_finish: true
+  include:
+    - env: FrontEnd
+      before_script:
+        - cd ${TRAVIS_BUILD_DIR}/frontend
+        - npm install
+      script:
+        - npm run deploy:development
+    - env: BackEnd
+      before_script:
+        - cd ${TRAVIS_BUILD_DIR}/backend
+        - npm install
+      script:
+        - npm run deploy:development
 deploy:
   provider: firebase
   token:
