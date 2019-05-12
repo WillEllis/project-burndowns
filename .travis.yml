@@ -1,29 +1,28 @@
 language: node_js
 node_js:
-  - "stable"
-cache:
-  directories:
-    - "$HOME/.npm"
+  - "8.11.4"
+branches:
+  only:
+    - master
 matrix:
   fast_finish: true
   include:
     - env: FrontEnd
       before_script:
         - cd ${TRAVIS_BUILD_DIR}/frontend
-        - npm install
+        - npm install -g @angular/cli
+        - npm install -g firebase-tools
       script:
+        - npm install
+        - firebase use production 
         - npm run build:production
-      deploy:
-        provider: firebase
-        token:
-          secure: "rYq9sMV/uKXPgJr7PBaCaSFOGKxUz4cYil3VNUlO5ANrOWlzEZf1Rv8r0YpIPa0jaogybbMSQW4XD8CSNsuUKGNGK0PFSr22sHQLzKiogZ+mXwkYqxoytDMVcXASTgm7p1fVe2QoAz73iu6K0z4+bXRT1SLnHsDgbxcoalYqNNQ+Sj5j+PxWg6P7h9ZbZ1ojh0ADU1f5gFXfT10ReVwexVUeNwqjGiN7/UNlj+mEQGKQSuKKTwDRwn/dsAnL/PhIWiBVURNb9bg6m7kfFXQuzS5svJoqrrMabnZq1oXRltDF7xaqojd/9KqwlD2V8ZVaG6Y0yRJfOMiacxMVb/T34C1uLTtYXNcHEySb+ovbfwfbc4nci8G3s+WRy14R+LmUz0bQqGYoOWnK98WBScv8PbWNMJi1OWwy8kuuQ0JaOFIODYKc22OZu+zvj8E7YdqLcF9NxYy71YH2WyP5sIwsPjEbFn41pDsryZ83KdD4KWR6b0mdnPSBK/VdzwF35Bwm0Ou8ytFXmfDIcHgpj9LXmhCKaMMoyaEIbnIug6T/tFaIgMNSnYrCXkbrMRK+1lygfYzk8nzBM7a8fER+WO6FDbtI4VCB5H8WExxLE9Fo+glEzmbbKo6yiQ/LoojROfOYILSrn7rstfM3bV2sRzIcgfDUmjFGYh5s3TPdz+6LV7g="
+      after_success:
+        - firebase deploy --only hosting,storage --token $FIREBASE_TOKEN --non-interactive
     - env: BackEnd
       before_script:
         - cd ${TRAVIS_BUILD_DIR}/backend
-        - npm install
+        - npm install -g @angular/cli
+        - npm install -g firebase-tools
       script:
-        -
-      deploy:
-        provider: firebase
-        token:
-          secure: "rYq9sMV/uKXPgJr7PBaCaSFOGKxUz4cYil3VNUlO5ANrOWlzEZf1Rv8r0YpIPa0jaogybbMSQW4XD8CSNsuUKGNGK0PFSr22sHQLzKiogZ+mXwkYqxoytDMVcXASTgm7p1fVe2QoAz73iu6K0z4+bXRT1SLnHsDgbxcoalYqNNQ+Sj5j+PxWg6P7h9ZbZ1ojh0ADU1f5gFXfT10ReVwexVUeNwqjGiN7/UNlj+mEQGKQSuKKTwDRwn/dsAnL/PhIWiBVURNb9bg6m7kfFXQuzS5svJoqrrMabnZq1oXRltDF7xaqojd/9KqwlD2V8ZVaG6Y0yRJfOMiacxMVb/T34C1uLTtYXNcHEySb+ovbfwfbc4nci8G3s+WRy14R+LmUz0bQqGYoOWnK98WBScv8PbWNMJi1OWwy8kuuQ0JaOFIODYKc22OZu+zvj8E7YdqLcF9NxYy71YH2WyP5sIwsPjEbFn41pDsryZ83KdD4KWR6b0mdnPSBK/VdzwF35Bwm0Ou8ytFXmfDIcHgpj9LXmhCKaMMoyaEIbnIug6T/tFaIgMNSnYrCXkbrMRK+1lygfYzk8nzBM7a8fER+WO6FDbtI4VCB5H8WExxLE9Fo+glEzmbbKo6yiQ/LoojROfOYILSrn7rstfM3bV2sRzIcgfDUmjFGYh5s3TPdz+6LV7g="
+        - npm install
+        - firebase deploy --only functions --token $FIREBASE_TOKEN --non-interactive
