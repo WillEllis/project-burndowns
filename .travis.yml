@@ -20,6 +20,7 @@ matrix:
         - firebase deploy --only hosting,storage --token $FIREBASE_TOKEN --non-interactive
     - env: BackEnd
       before_install:
+        - cd ${TRAVIS_BUILD_DIR}/backend/service-accounts
         - openssl aes-256-cbc -K $encrypted_fa719de7ed26_key -iv $encrypted_fa719de7ed26_iv -in production.json.enc -out production.json -d
       before_script:
         - cd ${TRAVIS_BUILD_DIR}/backend
