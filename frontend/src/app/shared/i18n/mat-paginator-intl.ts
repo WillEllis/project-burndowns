@@ -1,4 +1,4 @@
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { i18n } from 'src/i18n';
 
 export function MAT_PAGINATOR_INTL_PROVIDER_FACTORY(

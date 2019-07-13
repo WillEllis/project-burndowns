@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarConfig,
-} from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { i18n } from 'src/i18n';
 
 @Injectable({

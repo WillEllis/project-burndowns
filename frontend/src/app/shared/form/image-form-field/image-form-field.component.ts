@@ -41,7 +41,7 @@ export class ImageFormFieldComponent
   loading = false;
   localError = null;
 
-  @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput', { static: true }) fileInput: ElementRef;
 
   async add(event: any) {
     try {

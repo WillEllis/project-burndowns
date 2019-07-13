@@ -15,7 +15,7 @@ import { I18nModule } from 'src/app/shared/i18n/i18n.module';
 import { AvatarComponent } from 'src/app/shared/avatar/avatar.component';
 import { BreadcrumbComponent } from 'src/app/shared/breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MAT_PAGINATOR_INTL_PROVIDER_FACTORY } from 'src/app/shared/i18n/mat-paginator-intl';
 import { TagFormFieldComponent } from 'src/app/shared/form/tag-form-field/tag-form-field.component';
 import { DateTimeRangeInputComponent } from 'src/app/shared/form/date-time-range-input/date-time-range-input.component';

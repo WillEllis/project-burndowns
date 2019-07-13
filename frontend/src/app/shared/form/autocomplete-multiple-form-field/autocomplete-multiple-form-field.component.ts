@@ -32,7 +32,7 @@ export class AutocompleteMultipleFormFieldComponent {
   loading = false;
   debouncedSearch = (value) => {};
 
-  @ViewChild('textInput') textInput: ElementRef<
+  @ViewChild('textInput', { static: true }) textInput: ElementRef<
     HTMLInputElement
   >;
 

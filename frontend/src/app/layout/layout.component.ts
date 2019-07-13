@@ -12,7 +12,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
   templateUrl: './layout.component.html',
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  @ViewChild('snav')
+  @ViewChild('snav', { static: true })
   snav;
 
   mobileQuery: MediaQueryList;

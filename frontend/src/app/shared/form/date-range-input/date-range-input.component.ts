@@ -6,7 +6,7 @@ import {
   Optional,
   Self,
 } from '@angular/core';
-import { MatFormFieldControl } from '@angular/material';
+import { MatFormFieldControl } from '@angular/material/form-field';
 import {
   FormGroup,
   FormBuilder,

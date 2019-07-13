@@ -11,7 +11,7 @@ import { Chart } from 'chart.js';
   templateUrl: './home-chart.component.html',
 })
 export class HomeChartComponent implements OnInit {
-  @ViewChild('canvas')
+  @ViewChild('canvas', { static: true })
   canvas;
 
   @Input('props')

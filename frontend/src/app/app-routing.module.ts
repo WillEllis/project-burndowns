@@ -8,49 +8,49 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadChildren: './home/home.module#HomeModule',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
   },
   {
     path: 'auth',
-    loadChildren: './auth/auth.module#AuthModule',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
   },
   {
     path: 'iam',
-    loadChildren: './iam/iam.module#IamModule',
+    loadChildren: () => import('./iam/iam.module').then(m => m.IamModule),
   },
   {
     path: 'settings',
     loadChildren:
-      './settings/settings.module#SettingsModule',
+      () => import('./settings/settings.module').then(m => m.SettingsModule),
   },
   {
     path: 'audit-log',
     loadChildren:
-      './audit-log/audit-log.module#AuditLogModule',
+      () => import('./audit-log/audit-log.module').then(m => m.AuditLogModule),
   },
   {
     path: 'team',
-    loadChildren: './team/team.module#TeamModule',
+    loadChildren: () => import('./team/team.module').then(m => m.TeamModule),
   },
   {
     path: 'project',
-    loadChildren: './project/project.module#ProjectModule',
+    loadChildren: () => import('./project/project.module').then(m => m.ProjectModule),
   },
   {
     path: 'sprint',
-    loadChildren: './sprint/sprint.module#SprintModule',
+    loadChildren: () => import('./sprint/sprint.module').then(m => m.SprintModule),
   },
   {
     path: 'complexity-change',
-    loadChildren: './complexity-change/complexity-change.module#ComplexityChangeModule',
+    loadChildren: () => import('./complexity-change/complexity-change.module').then(m => m.ComplexityChangeModule),
   },
   {
     path: 'phase',
-    loadChildren: './phase/phase.module#PhaseModule',
+    loadChildren: () => import('./phase/phase.module').then(m => m.PhaseModule),
   },
   {
     path: 'story',
-    loadChildren: './story/story.module#StoryModule',
+    loadChildren: () => import('./story/story.module').then(m => m.StoryModule),
   },
   { path: '403', component: Error403Component },
   { path: '500', component: Error500Component },
