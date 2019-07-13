@@ -27,7 +27,7 @@ app.use(
       currentUser: req.currentUser,
       language: req.headers['accept-language'] || 'en',
     },
-    formatError(error) {
+    customFormatErrorFn(error) {
       if (process.env.NODE_ENV !== 'test') {
         console.error(error);
       }
